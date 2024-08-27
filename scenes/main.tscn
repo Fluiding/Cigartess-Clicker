@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://xndvoy0fhcgq"]
+
+[ext_resource type="PackedScene" uid="uid://vln8togixap8" path="res://scenes/ui.tscn" id="1_4j0np"]
+[ext_resource type="PackedScene" uid="uid://cjlurmo0v62ok" path="res://scenes/cigartess.tscn" id="2_5q6te"]
+
+[node name="Main" type="Node2D"]
+
+[node name="UI" parent="." instance=ExtResource("1_4j0np")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 1928.0
+offset_bottom = 1080.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="cookie" parent="." instance=ExtResource("2_5q6te")]
+position = Vector2(964, 517)

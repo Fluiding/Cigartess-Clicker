@@ -1,0 +1,103 @@
+[gd_scene load_steps=6 format=3 uid="uid://jpvye7rs8vtm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0v7ji"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_g8pc7"]
+font_size = 100
+font_color = Color(1, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_eswmq"]
+font_size = 60
+
+[sub_resource type="LabelSettings" id="LabelSettings_qjkq8"]
+font_size = 60
+
+[sub_resource type="LabelSettings" id="LabelSettings_diasq"]
+font_size = 60
+
+[node name="WarningScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_0v7ji")
+
+[node name="Label1" type="Label" parent="."]
+layout_mode = 0
+offset_right = 1980.0
+offset_bottom = 1080.0
+text = "WARNING
+
+
+
+
+
+"
+label_settings = SubResource("LabelSettings_g8pc7")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_right = 1980.0
+offset_bottom = 1080.0
+text = "Do NOT smoke, smoking KILLS.
+
+
+
+
+
+"
+label_settings = SubResource("LabelSettings_eswmq")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="."]
+layout_mode = 0
+offset_right = 1980.0
+offset_bottom = 1080.0
+text = "Unless it's a Cigartess.
+
+
+"
+label_settings = SubResource("LabelSettings_qjkq8")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -514.0
+offset_top = 194.0
+offset_right = 513.0
+offset_bottom = 298.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "I Understand, Please Continue."
+label_settings = SubResource("LabelSettings_diasq")
+horizontal_alignment = 1
+vertical_alignment = 1
