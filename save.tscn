@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://chrsth8kloqp8"]
+
+[node name="ShopList" type="VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(404, 798)

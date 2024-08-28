@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://vln8togixap8"]
+[gd_scene load_steps=25 format=3 uid="uid://vln8togixap8"]
 
 [ext_resource type="Script" path="res://scripts/ui.gd" id="1_2xkxv"]
 [ext_resource type="FontFile" uid="uid://bvragp710v4bv" path="res://fonts/Roboto-Medium.ttf" id="2_qo3av"]
@@ -34,12 +34,12 @@ outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="Theme" id="Theme_ha1s8"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7ypmm"]
-bg_color = Color(0.235294, 0.254902, 0.32549, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nbiqx"]
+bg_color = Color(0, 0, 0, 0.486275)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [sub_resource type="LabelSettings" id="LabelSettings_0k3y2"]
 font_size = 18
@@ -53,6 +53,32 @@ outline_color = Color(0, 0, 0, 1)
 [sub_resource type="LabelSettings" id="LabelSettings_xmd50"]
 font = ExtResource("2_qo3av")
 font_size = 29
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c1vfk"]
+bg_color = Color(0, 0, 0, 0.389)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ot1uq"]
+bg_color = Color(0, 0, 0, 0.487)
+corner_radius_top_left = 9
+
+[sub_resource type="LabelSettings" id="LabelSettings_g2bxh"]
+font_size = 30
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8g3t3"]
+bg_color = Color(0, 0, 0, 0.486275)
+corner_radius_top_right = 9
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j8h42"]
+bg_color = Color(0, 0, 0, 0.486275)
+
+[sub_resource type="LabelSettings" id="LabelSettings_xoblt"]
+font_size = 20
 outline_size = 2
 outline_color = Color(0, 0, 0, 1)
 
@@ -141,32 +167,32 @@ grow_horizontal = 0
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_46as1")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="ShopBar"]
+[node name="ShopContainer" type="ScrollContainer" parent="ShopBar"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 100.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ShopList" type="VBoxContainer" parent="ShopBar/ScrollContainer"]
+[node name="ShopList" type="VBoxContainer" parent="ShopBar/ShopContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(404, 798)
 layout_mode = 2
 
-[node name="CigarTess™" type="CenterContainer" parent="ShopBar/ScrollContainer/ShopList"]
+[node name="CigarTess™" type="CenterContainer" parent="ShopBar/ShopContainer/ShopList"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 
-[node name="Button" type="Button" parent="ShopBar/ScrollContainer/ShopList/CigarTess™"]
+[node name="Button" type="Button" parent="ShopBar/ShopContainer/ShopList/CigarTess™"]
 custom_minimum_size = Vector2(360, 80)
 layout_mode = 2
 theme = SubResource("Theme_ha1s8")
-theme_override_styles/focus = SubResource("StyleBoxFlat_7ypmm")
-theme_override_styles/hover = SubResource("StyleBoxFlat_7ypmm")
+theme_override_styles/normal = SubResource("StyleBoxFlat_nbiqx")
 
-[node name="Cost" type="Label" parent="ShopBar/ScrollContainer/ShopList/CigarTess™/Button"]
+[node name="Cost" type="Label" parent="ShopBar/ShopContainer/ShopList/CigarTess™/Button"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -182,7 +208,7 @@ text = "20"
 label_settings = SubResource("LabelSettings_0k3y2")
 vertical_alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="ShopBar/ScrollContainer/ShopList/CigarTess™/Button/Cost"]
+[node name="TextureRect" type="TextureRect" parent="ShopBar/ShopContainer/ShopList/CigarTess™/Button/Cost"]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 4
@@ -195,7 +221,7 @@ offset_bottom = 10.0
 grow_vertical = 2
 texture = ExtResource("3_hmjym")
 
-[node name="AmountOwned" type="Label" parent="ShopBar/ScrollContainer/ShopList/CigarTess™/Button"]
+[node name="AmountOwned" type="Label" parent="ShopBar/ShopContainer/ShopList/CigarTess™/Button"]
 layout_mode = 0
 offset_left = 15.0
 offset_right = 345.0
@@ -205,7 +231,7 @@ label_settings = SubResource("LabelSettings_uvd1v")
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="Title" type="Label" parent="ShopBar/ScrollContainer/ShopList/CigarTess™/Button"]
+[node name="Title" type="Label" parent="ShopBar/ShopContainer/ShopList/CigarTess™/Button"]
 layout_mode = 0
 offset_left = 69.0
 offset_right = 359.0
@@ -214,7 +240,7 @@ text = "Cigartess"
 label_settings = SubResource("LabelSettings_xmd50")
 vertical_alignment = 1
 
-[node name="Image" type="TextureRect" parent="ShopBar/ScrollContainer/ShopList/CigarTess™/Button"]
+[node name="Image" type="TextureRect" parent="ShopBar/ShopContainer/ShopList/CigarTess™/Button"]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 4
@@ -227,17 +253,18 @@ offset_bottom = 25.0
 grow_vertical = 2
 texture = ExtResource("3_xacjn")
 
-[node name="teens eh" type="CenterContainer" parent="ShopBar/ScrollContainer/ShopList"]
+[node name="teens eh" type="CenterContainer" parent="ShopBar/ShopContainer/ShopList"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 
-[node name="Button" type="Button" parent="ShopBar/ScrollContainer/ShopList/teens eh"]
+[node name="Button" type="Button" parent="ShopBar/ShopContainer/ShopList/teens eh"]
 custom_minimum_size = Vector2(360, 80)
 layout_mode = 2
 theme = SubResource("Theme_ha1s8")
+theme_override_styles/normal = SubResource("StyleBoxFlat_nbiqx")
 
-[node name="AmountOwned" type="Label" parent="ShopBar/ScrollContainer/ShopList/teens eh/Button"]
+[node name="AmountOwned" type="Label" parent="ShopBar/ShopContainer/ShopList/teens eh/Button"]
 layout_mode = 0
 offset_left = 15.0
 offset_right = 345.0
@@ -247,20 +274,7 @@ label_settings = SubResource("LabelSettings_uvd1v")
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="Image" type="TextureRect" parent="ShopBar/ScrollContainer/ShopList/teens eh/Button"]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 5.0
-offset_top = -25.0
-offset_right = 55.0
-offset_bottom = 25.0
-grow_vertical = 2
-texture = ExtResource("3_xacjn")
-
-[node name="Title" type="Label" parent="ShopBar/ScrollContainer/ShopList/teens eh/Button"]
+[node name="Title" type="Label" parent="ShopBar/ShopContainer/ShopList/teens eh/Button"]
 layout_mode = 0
 offset_left = 69.0
 offset_right = 359.0
@@ -269,7 +283,19 @@ text = "Template"
 label_settings = SubResource("LabelSettings_xmd50")
 vertical_alignment = 1
 
-[node name="Cost" type="Label" parent="ShopBar/ScrollContainer/ShopList/teens eh/Button"]
+[node name="Image" type="TextureRect" parent="ShopBar/ShopContainer/ShopList/teens eh/Button"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -40.0
+offset_right = 83.0
+offset_bottom = 40.0
+grow_vertical = 2
+texture = ExtResource("4_gysb8")
+
+[node name="Cost" type="Label" parent="ShopBar/ShopContainer/ShopList/teens eh/Button"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -285,7 +311,7 @@ text = "120"
 label_settings = SubResource("LabelSettings_0k3y2")
 vertical_alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="ShopBar/ScrollContainer/ShopList/teens eh/Button/Cost"]
+[node name="TextureRect" type="TextureRect" parent="ShopBar/ShopContainer/ShopList/teens eh/Button/Cost"]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 4
@@ -298,17 +324,18 @@ offset_bottom = 10.0
 grow_vertical = 2
 texture = ExtResource("3_hmjym")
 
-[node name="grandpa cough cough" type="CenterContainer" parent="ShopBar/ScrollContainer/ShopList"]
+[node name="grandpa cough cough" type="CenterContainer" parent="ShopBar/ShopContainer/ShopList"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 
-[node name="Button" type="Button" parent="ShopBar/ScrollContainer/ShopList/grandpa cough cough"]
+[node name="Button" type="Button" parent="ShopBar/ShopContainer/ShopList/grandpa cough cough"]
 custom_minimum_size = Vector2(360, 80)
 layout_mode = 2
 theme = SubResource("Theme_ha1s8")
+theme_override_styles/normal = SubResource("StyleBoxFlat_nbiqx")
 
-[node name="AmountOwned" type="Label" parent="ShopBar/ScrollContainer/ShopList/grandpa cough cough/Button"]
+[node name="AmountOwned" type="Label" parent="ShopBar/ShopContainer/ShopList/grandpa cough cough/Button"]
 layout_mode = 0
 offset_left = 15.0
 offset_right = 345.0
@@ -318,7 +345,7 @@ label_settings = SubResource("LabelSettings_uvd1v")
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="Title" type="Label" parent="ShopBar/ScrollContainer/ShopList/grandpa cough cough/Button"]
+[node name="Title" type="Label" parent="ShopBar/ShopContainer/ShopList/grandpa cough cough/Button"]
 layout_mode = 0
 offset_left = 69.0
 offset_right = 359.0
@@ -327,7 +354,20 @@ text = "Template"
 label_settings = SubResource("LabelSettings_xmd50")
 vertical_alignment = 1
 
-[node name="Cost" type="Label" parent="ShopBar/ScrollContainer/ShopList/grandpa cough cough/Button"]
+[node name="Image" type="TextureRect" parent="ShopBar/ShopContainer/ShopList/grandpa cough cough/Button"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 5.0
+offset_top = -25.0
+offset_right = 55.0
+offset_bottom = 25.0
+grow_vertical = 2
+texture = ExtResource("3_xacjn")
+
+[node name="Cost" type="Label" parent="ShopBar/ShopContainer/ShopList/grandpa cough cough/Button"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -343,7 +383,7 @@ text = "280"
 label_settings = SubResource("LabelSettings_0k3y2")
 vertical_alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="ShopBar/ScrollContainer/ShopList/grandpa cough cough/Button/Cost"]
+[node name="TextureRect" type="TextureRect" parent="ShopBar/ShopContainer/ShopList/grandpa cough cough/Button/Cost"]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 4
@@ -356,30 +396,18 @@ offset_bottom = 10.0
 grow_vertical = 2
 texture = ExtResource("3_hmjym")
 
-[node name="Image" type="TextureRect" parent="ShopBar/ScrollContainer/ShopList/grandpa cough cough/Button"]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 2.0
-offset_top = -40.0
-offset_right = 85.0
-offset_bottom = 40.0
-grow_vertical = 2
-texture = ExtResource("4_gysb8")
-
-[node name="tobacco plant" type="CenterContainer" parent="ShopBar/ScrollContainer/ShopList"]
+[node name="tobacco plant" type="CenterContainer" parent="ShopBar/ShopContainer/ShopList"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 
-[node name="Button" type="Button" parent="ShopBar/ScrollContainer/ShopList/tobacco plant"]
+[node name="Button" type="Button" parent="ShopBar/ShopContainer/ShopList/tobacco plant"]
 custom_minimum_size = Vector2(360, 80)
 layout_mode = 2
 theme = SubResource("Theme_ha1s8")
+theme_override_styles/normal = SubResource("StyleBoxFlat_nbiqx")
 
-[node name="AmountOwned" type="Label" parent="ShopBar/ScrollContainer/ShopList/tobacco plant/Button"]
+[node name="AmountOwned" type="Label" parent="ShopBar/ShopContainer/ShopList/tobacco plant/Button"]
 layout_mode = 0
 offset_left = 15.0
 offset_right = 345.0
@@ -389,7 +417,7 @@ label_settings = SubResource("LabelSettings_uvd1v")
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="Title" type="Label" parent="ShopBar/ScrollContainer/ShopList/tobacco plant/Button"]
+[node name="Title" type="Label" parent="ShopBar/ShopContainer/ShopList/tobacco plant/Button"]
 layout_mode = 0
 offset_left = 69.0
 offset_right = 359.0
@@ -398,7 +426,7 @@ text = "Template"
 label_settings = SubResource("LabelSettings_xmd50")
 vertical_alignment = 1
 
-[node name="Cost" type="Label" parent="ShopBar/ScrollContainer/ShopList/tobacco plant/Button"]
+[node name="Cost" type="Label" parent="ShopBar/ShopContainer/ShopList/tobacco plant/Button"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -414,7 +442,7 @@ text = "280"
 label_settings = SubResource("LabelSettings_0k3y2")
 vertical_alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="ShopBar/ScrollContainer/ShopList/tobacco plant/Button/Cost"]
+[node name="TextureRect" type="TextureRect" parent="ShopBar/ShopContainer/ShopList/tobacco plant/Button/Cost"]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 4
@@ -427,17 +455,18 @@ offset_bottom = 10.0
 grow_vertical = 2
 texture = ExtResource("3_hmjym")
 
-[node name="satanus" type="CenterContainer" parent="ShopBar/ScrollContainer/ShopList"]
+[node name="satanus" type="CenterContainer" parent="ShopBar/ShopContainer/ShopList"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 
-[node name="Button" type="Button" parent="ShopBar/ScrollContainer/ShopList/satanus"]
+[node name="Button" type="Button" parent="ShopBar/ShopContainer/ShopList/satanus"]
 custom_minimum_size = Vector2(360, 80)
 layout_mode = 2
 theme = SubResource("Theme_ha1s8")
+theme_override_styles/normal = SubResource("StyleBoxFlat_nbiqx")
 
-[node name="AmountOwned" type="Label" parent="ShopBar/ScrollContainer/ShopList/satanus/Button"]
+[node name="AmountOwned" type="Label" parent="ShopBar/ShopContainer/ShopList/satanus/Button"]
 layout_mode = 0
 offset_left = 15.0
 offset_right = 345.0
@@ -447,7 +476,7 @@ label_settings = SubResource("LabelSettings_uvd1v")
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="Title" type="Label" parent="ShopBar/ScrollContainer/ShopList/satanus/Button"]
+[node name="Title" type="Label" parent="ShopBar/ShopContainer/ShopList/satanus/Button"]
 layout_mode = 0
 offset_left = 69.0
 offset_right = 359.0
@@ -456,7 +485,7 @@ text = "Template"
 label_settings = SubResource("LabelSettings_xmd50")
 vertical_alignment = 1
 
-[node name="Cost" type="Label" parent="ShopBar/ScrollContainer/ShopList/satanus/Button"]
+[node name="Cost" type="Label" parent="ShopBar/ShopContainer/ShopList/satanus/Button"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -472,7 +501,7 @@ text = "280"
 label_settings = SubResource("LabelSettings_0k3y2")
 vertical_alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="ShopBar/ScrollContainer/ShopList/satanus/Button/Cost"]
+[node name="TextureRect" type="TextureRect" parent="ShopBar/ShopContainer/ShopList/satanus/Button/Cost"]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 4
@@ -485,18 +514,19 @@ offset_bottom = 10.0
 grow_vertical = 2
 texture = ExtResource("3_hmjym")
 
-[node name="jesus" type="CenterContainer" parent="ShopBar/ScrollContainer/ShopList"]
+[node name="jesus" type="CenterContainer" parent="ShopBar/ShopContainer/ShopList"]
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 
-[node name="Button" type="Button" parent="ShopBar/ScrollContainer/ShopList/jesus"]
+[node name="Button" type="Button" parent="ShopBar/ShopContainer/ShopList/jesus"]
 custom_minimum_size = Vector2(360, 80)
 layout_mode = 2
 theme = SubResource("Theme_ha1s8")
+theme_override_styles/normal = SubResource("StyleBoxFlat_nbiqx")
 
-[node name="AmountOwned" type="Label" parent="ShopBar/ScrollContainer/ShopList/jesus/Button"]
+[node name="AmountOwned" type="Label" parent="ShopBar/ShopContainer/ShopList/jesus/Button"]
 layout_mode = 0
 offset_left = 15.0
 offset_right = 345.0
@@ -506,7 +536,7 @@ label_settings = SubResource("LabelSettings_uvd1v")
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="Title" type="Label" parent="ShopBar/ScrollContainer/ShopList/jesus/Button"]
+[node name="Title" type="Label" parent="ShopBar/ShopContainer/ShopList/jesus/Button"]
 layout_mode = 0
 offset_left = 69.0
 offset_right = 359.0
@@ -515,7 +545,7 @@ text = "Template"
 label_settings = SubResource("LabelSettings_xmd50")
 vertical_alignment = 1
 
-[node name="Cost" type="Label" parent="ShopBar/ScrollContainer/ShopList/jesus/Button"]
+[node name="Cost" type="Label" parent="ShopBar/ShopContainer/ShopList/jesus/Button"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -531,7 +561,7 @@ text = "280"
 label_settings = SubResource("LabelSettings_0k3y2")
 vertical_alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="ShopBar/ScrollContainer/ShopList/jesus/Button/Cost"]
+[node name="TextureRect" type="TextureRect" parent="ShopBar/ShopContainer/ShopList/jesus/Button/Cost"]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 4
@@ -544,27 +574,194 @@ offset_bottom = 10.0
 grow_vertical = 2
 texture = ExtResource("3_hmjym")
 
+[node name="ShopOptions" type="Panel" parent="ShopBar"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.125313
+theme_override_styles/panel = SubResource("StyleBoxFlat_c1vfk")
+metadata/_edit_use_anchors_ = true
+
+[node name="Buy" type="Button" parent="ShopBar/ShopOptions"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -207.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_ot1uq")
+
+[node name="Label" type="Label" parent="ShopBar/ShopOptions/Buy"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Buy"
+label_settings = SubResource("LabelSettings_g2bxh")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sell" type="Button" parent="ShopBar/ShopOptions"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 207.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_8g3t3")
+
+[node name="Label" type="Label" parent="ShopBar/ShopOptions/Sell"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Sell"
+label_settings = SubResource("LabelSettings_g2bxh")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="x1" type="Button" parent="ShopBar/ShopOptions"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 67.0
+offset_right = -303.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_j8h42")
+
+[node name="Label" type="Label" parent="ShopBar/ShopOptions/x1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "1x"
+label_settings = SubResource("LabelSettings_xoblt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="x10" type="Button" parent="ShopBar/ShopOptions"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 101.0
+offset_top = 67.0
+offset_right = -202.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_j8h42")
+
+[node name="Label" type="Label" parent="ShopBar/ShopOptions/x10"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "10x"
+label_settings = SubResource("LabelSettings_xoblt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="x100" type="Button" parent="ShopBar/ShopOptions"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 202.0
+offset_top = 67.0
+offset_right = -101.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_j8h42")
+
+[node name="Label" type="Label" parent="ShopBar/ShopOptions/x100"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "100x"
+label_settings = SubResource("LabelSettings_xoblt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="max" type="Button" parent="ShopBar/ShopOptions"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 303.0
+offset_top = 67.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_j8h42")
+
+[node name="Label" type="Label" parent="ShopBar/ShopOptions/max"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Max"
+label_settings = SubResource("LabelSettings_xoblt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="HoverSound" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(1493, 236)
 stream = ExtResource("6_w1j10")
-volume_db = 24.0
+volume_db = 15.0
 max_polyphony = 999999999
 
 [node name="ClickSound" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(1493, 236)
 stream = ExtResource("7_vi126")
-volume_db = 24.0
+volume_db = 15.0
 max_polyphony = 999999999
 
 [node name="BuySound" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(1493, 236)
 stream = ExtResource("8_3ac30")
-volume_db = 5.0
+volume_db = 1.0
 pitch_scale = 0.9
 max_polyphony = 999999999
 
 [node name="SellSound" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(1493, 236)
 stream = ExtResource("9_pcxfa")
-volume_db = 5.0
+volume_db = 1.0
 max_polyphony = 999999999
+
+[connection signal="button_down" from="ShopBar/ShopOptions/Buy" to="." method="click_sound"]
+[connection signal="button_down" from="ShopBar/ShopOptions/Buy" to="." method="set_sell_mode" binds= [false]]
+[connection signal="mouse_entered" from="ShopBar/ShopOptions/Buy" to="." method="hover_sound"]
+[connection signal="button_down" from="ShopBar/ShopOptions/Sell" to="." method="click_sound"]
+[connection signal="button_down" from="ShopBar/ShopOptions/Sell" to="." method="set_sell_mode" binds= [true]]
+[connection signal="mouse_entered" from="ShopBar/ShopOptions/Sell" to="." method="hover_sound"]
+[connection signal="button_down" from="ShopBar/ShopOptions/x1" to="." method="click_sound"]
+[connection signal="button_down" from="ShopBar/ShopOptions/x1" to="." method="set_buy_mult" binds= [1]]
+[connection signal="mouse_entered" from="ShopBar/ShopOptions/x1" to="." method="hover_sound"]
+[connection signal="button_down" from="ShopBar/ShopOptions/x10" to="." method="click_sound"]
+[connection signal="button_down" from="ShopBar/ShopOptions/x10" to="." method="set_buy_mult" binds= [10]]
+[connection signal="mouse_entered" from="ShopBar/ShopOptions/x10" to="." method="hover_sound"]
+[connection signal="button_down" from="ShopBar/ShopOptions/x100" to="." method="click_sound"]
+[connection signal="button_down" from="ShopBar/ShopOptions/x100" to="." method="set_buy_mult" binds= [100]]
+[connection signal="mouse_entered" from="ShopBar/ShopOptions/x100" to="." method="hover_sound"]
+[connection signal="button_down" from="ShopBar/ShopOptions/max" to="." method="click_sound"]
+[connection signal="button_down" from="ShopBar/ShopOptions/max" to="." method="set_buy_mult" binds= [0]]
+[connection signal="mouse_entered" from="ShopBar/ShopOptions/max" to="." method="hover_sound"]
