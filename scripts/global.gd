@@ -3,7 +3,7 @@ extends Node
 const HUGE: int = 9223372036854775807
 var time: int
 var click_mult := 1.0
-var cigartess := 10000000000.0
+var cigartess := 0.0
 var cps := 0.0
 
 var buildings := {
