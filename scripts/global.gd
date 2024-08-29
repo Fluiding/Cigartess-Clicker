@@ -3,7 +3,7 @@ extends Node
 const HUGE: int = 9223372036854775807
 var time: int
 var click_mult := 1.0
-var cigartess := 0.0
+var cigartess := 1111111110.0
 var cps := 0.0
 
 var buildings := {
@@ -45,34 +45,41 @@ func get_total_cost(building, start, end) -> float:
 	
 	return total_cost
 
-func buy_building(building, amount, buy_max) -> bool:
+func get_building_cost(building, amount, buy_max):
 	var b_stats = buildings[building]
 	var b_data = buildings_data[building]
 	var total_cost := 0.0
 	
 	if buy_max:
 		amount = 0
-		
 		for i in range(1, 65536):
+			
 			var amount_to_add = (b_stats["cost"] * 1.15 ** i) / 1.15
 			if total_cost + amount_to_add > cigartess:
+				if i == 1:
+					total_cost = b_data["amount_owned"]
 				break
 
 			total_cost += amount_to_add
 			amount = i
-			
-		if amount == 0:
-			return false
+
 	else:
 		total_cost = get_total_cost(building, b_data["amount_owned"], b_data["amount_owned"] + amount)
+	
+	if building == "Satanus" or building == "Jesús":
+		total_cost = b_stats["cost"]
 		
-		if cigartess < total_cost:
+	return {"cost": total_cost, "amount": amount}
+
+func buy_building(building, amount, buy_max) -> bool:
+	var total_cost = get_building_cost(building, amount, buy_max)
+	if total_cost["amount"] == 0 or cigartess < total_cost["cost"]:
 			return false
 	
-	cigartess -= total_cost
-	b_data["amount_owned"] += amount
-	update_data()
+	cigartess -= total_cost["cost"]
+	buildings_data[building]["amount_owned"] += total_cost["amount"]
 	
+	update_data()
 	return true
 
 func sell_building(building, amount, sell_max, return_cigartess = true) -> bool:

@@ -41,7 +41,7 @@ func _ready():
 
 func _process(_delta):
 	%cigartess.text = thousands_sep(floor(global.cigartess)) + " Cigartess"
-	%cps.text = thousands_sep("%.2f" % global.cps) + " Cigartess per Second"
+	%cps.text = thousands_sep("%.2f" % global.cps).replace(".00", "") + " Cigartess per Second"
 
 func hover_sound(): $HoverSound.play()
 func click_sound(): $ClickSound.play()
@@ -77,18 +77,26 @@ func buy_building(building):
 func sell_building(building):
 	if !global.sell_building(building, buy_mult, buy_max):
 		return
-		
 	$SellSound.play()
+	
 	var b_node: String = "%" + building + "/Button"
-	get_node(b_node + "/AmountOwned").text = thousands_sep(global.buildings_data[building]["amount_owned"])
-	get_node(b_node + "/Cost").text = thousands_sep(global.buildings[building]["cost"])
+	var cost = global.buildings[building]["cost"]
+	var amount_owned = global.buildings_data[building]["amount_owned"]
+	
+	get_node(b_node + "/AmountOwned").text = thousands_sep(amount_owned)
+	get_node(b_node + "/Cost").text = thousands_sep(("%.2f" % cost).replace(".00", ""))
 
 func set_sell_mode(option: bool):
 	sell_mode = option
 
-func set_buy_mult(value: int):
-	if value == 0:
+func set_buy_mult(amount: int):
+	if amount == 0:
 		buy_max = true
 	else:
-		buy_mult = value
+		buy_mult = amount
 		buy_max = false
+
+	for i in %ShopList.get_children():
+		var cost_label = get_node("%" + i.name + "/Button/Cost")
+		var cost = global.get_building_cost(i.name, buy_mult, buy_max)["cost"]
+		cost_label.text = thousands_sep(("%.2f" % cost).replace(".00", ""))
