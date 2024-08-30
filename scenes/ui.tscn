@@ -1,7 +1,7 @@
 [gd_scene load_steps=25 format=3 uid="uid://vln8togixap8"]
 
 [ext_resource type="Script" path="res://scripts/ui.gd" id="1_2xkxv"]
-[ext_resource type="FontFile" uid="uid://bvragp710v4bv" path="res://fonts/Roboto-Medium.ttf" id="2_qo3av"]
+[ext_resource type="FontFile" uid="uid://dygqvv31bsjpx" path="res://fonts/font32x32.ttf" id="2_i0w1d"]
 [ext_resource type="Texture2D" uid="uid://3hu3vmk03t78" path="res://assets/cigartess16x16.png" id="3_hmjym"]
 [ext_resource type="Texture2D" uid="uid://cyvgg7ess233c" path="res://assets/cigartess.png" id="3_xacjn"]
 [ext_resource type="Texture2D" uid="uid://dvbnojw0lbhch" path="res://assets/grandpa.png" id="4_gysb8"]
@@ -21,13 +21,13 @@ corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
 [sub_resource type="LabelSettings" id="LabelSettings_rd676"]
-font = ExtResource("2_qo3av")
+font = ExtResource("2_i0w1d")
 font_size = 85
 outline_size = 4
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_1lid7"]
-font = ExtResource("2_qo3av")
+font = ExtResource("2_i0w1d")
 font_size = 28
 outline_size = 2
 outline_color = Color(0, 0, 0, 1)
@@ -42,16 +42,17 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [sub_resource type="LabelSettings" id="LabelSettings_0k3y2"]
+font = ExtResource("2_i0w1d")
 font_size = 18
 
 [sub_resource type="LabelSettings" id="LabelSettings_uvd1v"]
-font = ExtResource("2_qo3av")
+font = ExtResource("2_i0w1d")
 font_size = 50
 outline_size = 2
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_xmd50"]
-font = ExtResource("2_qo3av")
+font = ExtResource("2_i0w1d")
 font_size = 29
 outline_size = 2
 outline_color = Color(0, 0, 0, 1)
@@ -66,6 +67,7 @@ bg_color = Color(0, 0, 0, 0.487)
 corner_radius_top_left = 9
 
 [sub_resource type="LabelSettings" id="LabelSettings_g2bxh"]
+font = ExtResource("2_i0w1d")
 font_size = 30
 outline_size = 2
 outline_color = Color(0, 0, 0, 1)
@@ -78,6 +80,7 @@ corner_radius_top_right = 9
 bg_color = Color(0, 0, 0, 0.486275)
 
 [sub_resource type="LabelSettings" id="LabelSettings_xoblt"]
+font = ExtResource("2_i0w1d")
 font_size = 20
 outline_size = 2
 outline_color = Color(0, 0, 0, 1)
@@ -747,6 +750,254 @@ stream = ExtResource("9_pcxfa")
 volume_db = 1.0
 max_polyphony = 999999999
 
+[node name="UpgradesBar" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -1895.0
+offset_top = -304.0
+offset_right = -1491.0
+offset_bottom = 494.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_46as1")
+
+[node name="UpgradesContainer" type="ScrollContainer" parent="UpgradesBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="UpgradesList" type="VBoxContainer" parent="UpgradesBar/UpgradesContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(404, 798)
+layout_mode = 2
+
+[node name="minimized nag" type="CenterContainer" parent="UpgradesBar/UpgradesContainer/UpgradesList"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="Button" type="Button" parent="UpgradesBar/UpgradesContainer/UpgradesList/minimized nag"]
+custom_minimum_size = Vector2(360, 80)
+layout_mode = 2
+theme = SubResource("Theme_ha1s8")
+theme_override_styles/normal = SubResource("StyleBoxFlat_nbiqx")
+
+[node name="Cost" type="Label" parent="UpgradesBar/UpgradesContainer/UpgradesList/minimized nag/Button"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -0.5
+offset_top = -23.0
+offset_right = 0.5
+grow_horizontal = 2
+grow_vertical = 0
+text = "20"
+label_settings = SubResource("LabelSettings_0k3y2")
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="UpgradesBar/UpgradesContainer/UpgradesList/minimized nag/Button/Cost"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -23.0
+offset_top = -10.0
+offset_right = -3.0
+offset_bottom = 10.0
+grow_vertical = 2
+texture = ExtResource("3_hmjym")
+
+[node name="Bought" type="Label" parent="UpgradesBar/UpgradesContainer/UpgradesList/minimized nag/Button"]
+layout_mode = 0
+offset_left = 15.0
+offset_right = 345.0
+offset_bottom = 80.0
+label_settings = SubResource("LabelSettings_uvd1v")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Title" type="Label" parent="UpgradesBar/UpgradesContainer/UpgradesList/minimized nag/Button"]
+layout_mode = 0
+offset_left = 69.0
+offset_right = 359.0
+offset_bottom = 80.0
+text = "Cigartess"
+label_settings = SubResource("LabelSettings_xmd50")
+vertical_alignment = 1
+
+[node name="Image" type="TextureRect" parent="UpgradesBar/UpgradesContainer/UpgradesList/minimized nag/Button"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 5.0
+offset_top = -25.0
+offset_right = 55.0
+offset_bottom = 25.0
+grow_vertical = 2
+texture = ExtResource("3_xacjn")
+
+[node name="ShopOptions" type="Panel" parent="UpgradesBar"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.125313
+theme_override_styles/panel = SubResource("StyleBoxFlat_c1vfk")
+metadata/_edit_use_anchors_ = true
+
+[node name="Buy" type="Button" parent="UpgradesBar/ShopOptions"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -207.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_ot1uq")
+
+[node name="Label" type="Label" parent="UpgradesBar/ShopOptions/Buy"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Buy"
+label_settings = SubResource("LabelSettings_g2bxh")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sell" type="Button" parent="UpgradesBar/ShopOptions"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 207.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_8g3t3")
+
+[node name="Label" type="Label" parent="UpgradesBar/ShopOptions/Sell"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Sell"
+label_settings = SubResource("LabelSettings_g2bxh")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="x1" type="Button" parent="UpgradesBar/ShopOptions"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 67.0
+offset_right = -303.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_j8h42")
+
+[node name="Label" type="Label" parent="UpgradesBar/ShopOptions/x1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "1x"
+label_settings = SubResource("LabelSettings_xoblt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="x10" type="Button" parent="UpgradesBar/ShopOptions"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 101.0
+offset_top = 67.0
+offset_right = -202.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_j8h42")
+
+[node name="Label" type="Label" parent="UpgradesBar/ShopOptions/x10"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "10x"
+label_settings = SubResource("LabelSettings_xoblt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="x100" type="Button" parent="UpgradesBar/ShopOptions"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 202.0
+offset_top = 67.0
+offset_right = -101.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_j8h42")
+
+[node name="Label" type="Label" parent="UpgradesBar/ShopOptions/x100"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "100x"
+label_settings = SubResource("LabelSettings_xoblt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="max" type="Button" parent="UpgradesBar/ShopOptions"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 303.0
+offset_top = 67.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_j8h42")
+
+[node name="Label" type="Label" parent="UpgradesBar/ShopOptions/max"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Max"
+label_settings = SubResource("LabelSettings_xoblt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="button_down" from="ShopBar/ShopOptions/Buy" to="." method="click_sound"]
 [connection signal="button_down" from="ShopBar/ShopOptions/Buy" to="." method="set_sell_mode" binds= [false]]
 [connection signal="mouse_entered" from="ShopBar/ShopOptions/Buy" to="." method="hover_sound"]
@@ -765,3 +1016,21 @@ max_polyphony = 999999999
 [connection signal="button_down" from="ShopBar/ShopOptions/max" to="." method="click_sound"]
 [connection signal="button_down" from="ShopBar/ShopOptions/max" to="." method="set_buy_mult" binds= [0]]
 [connection signal="mouse_entered" from="ShopBar/ShopOptions/max" to="." method="hover_sound"]
+[connection signal="button_down" from="UpgradesBar/ShopOptions/Buy" to="." method="click_sound"]
+[connection signal="button_down" from="UpgradesBar/ShopOptions/Buy" to="." method="set_sell_mode" binds= [false]]
+[connection signal="mouse_entered" from="UpgradesBar/ShopOptions/Buy" to="." method="hover_sound"]
+[connection signal="button_down" from="UpgradesBar/ShopOptions/Sell" to="." method="click_sound"]
+[connection signal="button_down" from="UpgradesBar/ShopOptions/Sell" to="." method="set_sell_mode" binds= [true]]
+[connection signal="mouse_entered" from="UpgradesBar/ShopOptions/Sell" to="." method="hover_sound"]
+[connection signal="button_down" from="UpgradesBar/ShopOptions/x1" to="." method="click_sound"]
+[connection signal="button_down" from="UpgradesBar/ShopOptions/x1" to="." method="set_buy_mult" binds= [1]]
+[connection signal="mouse_entered" from="UpgradesBar/ShopOptions/x1" to="." method="hover_sound"]
+[connection signal="button_down" from="UpgradesBar/ShopOptions/x10" to="." method="click_sound"]
+[connection signal="button_down" from="UpgradesBar/ShopOptions/x10" to="." method="set_buy_mult" binds= [10]]
+[connection signal="mouse_entered" from="UpgradesBar/ShopOptions/x10" to="." method="hover_sound"]
+[connection signal="button_down" from="UpgradesBar/ShopOptions/x100" to="." method="click_sound"]
+[connection signal="button_down" from="UpgradesBar/ShopOptions/x100" to="." method="set_buy_mult" binds= [100]]
+[connection signal="mouse_entered" from="UpgradesBar/ShopOptions/x100" to="." method="hover_sound"]
+[connection signal="button_down" from="UpgradesBar/ShopOptions/max" to="." method="click_sound"]
+[connection signal="button_down" from="UpgradesBar/ShopOptions/max" to="." method="set_buy_mult" binds= [0]]
+[connection signal="mouse_entered" from="UpgradesBar/ShopOptions/max" to="." method="hover_sound"]

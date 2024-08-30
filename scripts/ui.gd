@@ -19,12 +19,12 @@ func thousands_sep(value) -> String:
 	return str_value
 
 func _ready():
+	var building_nodes := %ShopList.get_children()
+	var upgrades_nodes := %UpgradesList.get_children()
+	var index: int
 	
-	
-	var building_nodes  := %ShopList.get_children()
-	var index = 0
+	index = 0
 	for i in global.buildings:
-		
 		var b_node = "%" + i + "/Button"
 		building_nodes[index].name = i
 		index += 1
@@ -38,6 +38,19 @@ func _ready():
 	if global.buildings_data["Satanus"]["amount_owned"] > 0:
 		%Satanus/Button.disabled = true
 		%Jesús.visible = true
+		
+	index = 0
+	for i in upgrades.upgrades_cost:
+		var b_node = "%" + i + "/Button"
+		upgrades_nodes[index].name = i
+		index += 1
+		
+		get_node(b_node + "/Bought").visible = upgrades.upgrades_bought[i]
+		get_node(b_node + "/Title").text = i
+		get_node(b_node + "/Cost").text = thousands_sep(upgrades.upgrades_cost[i])
+		get_node(b_node).button_down.connect(buy_upgrade.bind(i))
+		get_node(b_node).button_down.connect(click_sound)
+		get_node(b_node).mouse_entered.connect(hover_sound)
 
 func _process(_delta):
 	%cigartess.text = thousands_sep(floor(global.cigartess)) + " Cigartess"
@@ -46,6 +59,9 @@ func _process(_delta):
 func hover_sound(): $HoverSound.play()
 func click_sound(): $ClickSound.play()
 
+func buy_upgrade(building):
+	upgrades.buy_upgrade(building)
+
 func handle_building(building):
 	if sell_mode:
 		sell_building(building)
@@ -53,7 +69,7 @@ func handle_building(building):
 		buy_building(building)
 
 func buy_building(building):
-	if !global.buy_building(building, buy_mult, buy_max):
+	if !shop.buy_building(building, buy_mult, buy_max):
 		return
 	
 	$BuySound.play()
@@ -61,8 +77,8 @@ func buy_building(building):
 	get_node(b_node + "/AmountOwned").text = thousands_sep(global.buildings_data[building]["amount_owned"])
 	
 	if building == "Jesús":
-		global.sell_building("Satanus", 0, true, false)
-		global.sell_building("Jesús", 0, true, false)
+		shop.sell_building("Satanus", 0, true, false)
+		shop.sell_building("Jesús", 0, true, false)
 		%Satanus/Button/AmountOwned.text = "0"
 		%Satanus/Button.disabled = false
 		%Jesús.visible = false
@@ -75,7 +91,7 @@ func buy_building(building):
 	get_node(b_node + "/Cost").text = thousands_sep(global.buildings[building]["cost"])
 
 func sell_building(building):
-	if !global.sell_building(building, buy_mult, buy_max):
+	if !shop.sell_building(building, buy_mult, buy_max):
 		return
 	$SellSound.play()
 	
@@ -98,5 +114,5 @@ func set_buy_mult(amount: int):
 
 	for i in %ShopList.get_children():
 		var cost_label = get_node("%" + i.name + "/Button/Cost")
-		var cost = global.get_building_cost(i.name, buy_mult, buy_max)["cost"]
+		var cost = shop.get_building_cost(i.name, buy_mult, buy_max)["cost"]
 		cost_label.text = thousands_sep(("%.2f" % cost).replace(".00", ""))

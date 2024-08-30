@@ -19,6 +19,8 @@ boot_splash/show_image=false
 [autoload]
 
 global="*res://scripts/global.gd"
+shop="*res://scripts/shop.gd"
+upgrades="*res://scripts/upgrades.gd"
 
 [display]
 

@@ -22,81 +22,21 @@ func add_cookies(amount: float):
 	cigartess += amount
 
 func update_data():
+	var d = buildings_data
 	for i in buildings:
-		buildings[i]["cost"] = ceil(buildings[i]["base_cost"] * 1.15 ** buildings_data[i]["amount_owned"])
+		buildings[i]["cost"] = ceil(buildings[i]["base_cost"] * 1.15 ** d[i]["amount_owned"])
 	
-	cps = buildings_data["Cigartess"]["amount_owned"] * 0.1
-	cps += buildings_data["Grandpa"]["amount_owned"]
-	cps += buildings_data["Tobacco Factory"]["amount_owned"] * 10
-	cps -= cps / 100 * buildings_data["Teenager"]["amount_owned"]
+	cps = d["Cigartess"]["amount_owned"] * 0.1 * d["Cigartess"]["multiplier"]
+	cps += d["Grandpa"]["amount_owned"] * 1 * d["Cigartess"]["multiplier"]
+	cps += d["Tobacco Factory"]["amount_owned"] * 10 * d["Cigartess"]["multiplier"]
+	cps -= cps / 100 * d["Teenager"]["amount_owned"] * 1 * d["Cigartess"]["multiplier"]
 
-	click_mult *= 1 + (0.97 * 0.97 ** buildings_data["Teenager"]["amount_owned"]) / 20
+	click_mult *= 1 + (0.97 * 0.97 ** d["Teenager"]["amount_owned"]) / 20
 	click_mult = clampf(click_mult, 1.0 / HUGE, 5)
 	
-	if buildings_data["Satanus"]["amount_owned"] > 0 and buildings_data["Jesús"]["amount_owned"] == 0:
+	if d["Satanus"]["amount_owned"] > 0 and d["Jesús"]["amount_owned"] == 0:
 		cps = 0
 
-func get_total_cost(building, start, end) -> float:
-	var total_cost := 0.0
-	
-	for i in range(start + 1, end + 1):
-		var term = (buildings[building]["base_cost"] * 1.15 ** i) / 1.15
-		total_cost += term
-	
-	return total_cost
-
-func get_building_cost(building, amount, buy_max):
-	var b_stats = buildings[building]
-	var b_data = buildings_data[building]
-	var total_cost := 0.0
-	
-	if buy_max:
-		amount = 0
-		for i in range(1, 65536):
-			
-			var amount_to_add = (b_stats["cost"] * 1.15 ** i) / 1.15
-			if total_cost + amount_to_add > cigartess:
-				if i == 1:
-					total_cost = b_data["amount_owned"]
-				break
-
-			total_cost += amount_to_add
-			amount = i
-
-	else:
-		total_cost = get_total_cost(building, b_data["amount_owned"], b_data["amount_owned"] + amount)
-	
-	if building == "Satanus" or building == "Jesús":
-		total_cost = b_stats["cost"]
-		
-	return {"cost": total_cost, "amount": amount}
-
-func buy_building(building, amount, buy_max) -> bool:
-	var total_cost = get_building_cost(building, amount, buy_max)
-	if total_cost["amount"] == 0 or cigartess < total_cost["cost"]:
-			return false
-	
-	cigartess -= total_cost["cost"]
-	buildings_data[building]["amount_owned"] += total_cost["amount"]
-	
-	update_data()
-	return true
-
-func sell_building(building, amount, sell_max, return_cigartess = true) -> bool:
-	var amount_owned = buildings_data[building]["amount_owned"]
-
-	if !sell_max && amount_owned - amount < 0:
-		return false
-	if sell_max:
-		amount = amount_owned
-	
-	if return_cigartess:
-		cigartess += get_total_cost(building, amount_owned - amount, amount_owned) / 2
-	
-	buildings_data[building]["amount_owned"] -= amount
-	update_data()
-	return true
-	
 func save_game():
 	var save_data = {
 		"buildings_data": buildings_data,
@@ -120,7 +60,7 @@ func load_game():
 	
 func _init():
 	for i in buildings:
-		buildings_data[i] = {"amount_owned": 0}
+		buildings_data[i] = {"amount_owned": 0,  "multiplier": 1}
 		
 	load_game()
 	time = Time.get_ticks_msec()
